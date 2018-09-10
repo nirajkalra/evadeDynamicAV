@@ -8,7 +8,7 @@ mamlWASH is a research project which is based on the principle of hiding the beh
 
 ### Scope of project 
 The scope of this project will include the following:
-1. We will analyses the implementation challenges in malWASH and suggests mechanisms to get over them.
+1. We analyse the implementation challenges in malWASH and suggest mechanisms to get over them.
 2. Study the efficacy of malWASH against well-known antivirus.
 3. Highlight the major limitations in active implementation of malWASH on live targets.
 4. It extends malWASH and proposes techniques for complete evasion of dynamic detection by selecetd antivirus.
