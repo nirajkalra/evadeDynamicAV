@@ -24,10 +24,14 @@ An input to the malWASH engine is a binary file that outputs a C++ source file. 
 ### Implementation Challenges
 
 *Offline Processing*. It involves analysis of binary and generation of the source file by Chopping binary into small blocks and assign unique Block Identifiers (BID) to each basic block. malWASH uses an Interactive Disassembler (IDA) plugin for this task based on Depth-First Search (DFS) to disassemble the program from its entry point. The process involves the recovery of the Control Flow Graph (CFG) of the binary recursively by following control flow instructions. malWASH supports three configuration modes for chopping the binary:
+
 ∙ *Basic Block Split mode(BBS)*. The basic blocks are used in the original form.
+
 ∙ *Below AV Signature Threshold mode (BAST)*. Basic blocks are chopped such that each block is below the desired threshold. Additional transfer instructions are inserted to connect newly chopped basic blocks.
+
 ∙ *Paranoid mode*. Basic blocks include single instruction. This mode provides the best evasion.
-*Online Component*. Online processing involves selection of the processes by loader and injection of an emulator. Thereafter, emulators starts execution of the program and carries out coordination among them. malWASH emulator is written in a pure assembly consisting of approx 5,500 line of code [1]. MalWASH malware first performs the search of a target process as per the whitelist for the code injection. It is implemented by searching through processes by calling two Application Program Interfaces (APIs): CreateToolhelp32Snapshot and Process32Next [2]. The standard code injection of malWASH involves four functions: OpenProcess, VirtualAllocEx, WriteProcessMemory and CreateRemoteThread
+
+*Online Component*. Online processing involves selection of the processes by loader and injection of an emulator. Thereafter, emulators starts execution of the program and carries out coordination among them. malWASH emulator is written in a pure assembly consisting of approx 5,500 line of code. MalWASH malware first performs the search of a target process as per the whitelist for the code injection. It is implemented by searching through processes by calling two Application Program Interfaces (APIs): CreateToolhelp32Snapshot and Process32Next . The standard code injection of malWASH involves four functions: OpenProcess, VirtualAllocEx, WriteProcessMemory and CreateRemoteThread
 
 ### Injection Process
 
