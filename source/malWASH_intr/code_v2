@@ -570,7 +570,7 @@ void injectQUAPC( DWORD dwProcessId ){
 **  That's the main function...
 */
 //-----------------------------------------------------------------------------------------------------------
-int main(int argc, char* argv[])
+int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
     printf("++==============================================================++\n");
     printf("||                       _   __      __                _        ||\n");
