@@ -573,20 +573,6 @@ void injectQUAPC( DWORD dwProcessId ){
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
     printf("++==============================================================++\n");
-    printf("||                       _   __      __                _        ||\n");
-    printf("||     _ __    __ _     | |  \\ \\    / /__ _     ___   | |_      ||\n");
-    printf("||    | '  \\  / _` |    | |   \\ \\/\\/ // _` |   (_-<   | ' \\     ||\n");
-    printf("||    |_|_|_| \\__,_|   _|_|_   \\_/\\_/ \\__,_|   /__/_  |_||_|    ||\n");
-    printf("||   _|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|   ||\n");
-    printf("||   \"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'   ||\n");
-    printf("++==============================================================++\n");
-    printf("||                           malWASH                            ||\n");
-    printf("||   The malware engine for evading ETW and dynamic analysis    ||\n");
-    printf("||                                                              ||\n");
-    printf("||                    Block Execution Engine                    ||\n");
-    printf("++==============================================================++\n");
-
-
     reasm();                                                // reassemble large arrays
 
 	int choice;
