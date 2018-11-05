@@ -1,1 +1,5 @@
-we create sample malware using malWASH and test for its detection
+we create sample malware using malWASH and test for its detection.
+
+We have a QueueUserAPC modified file for testing purpose.
+
+We also have a FUMA binary execuatble for experimental evaluation using 32 bit process hollowing technique.
